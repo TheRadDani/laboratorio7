@@ -1,0 +1,320 @@
+.TH "src/src/lista.c" 3 "Fri Feb 26 2021" "Version 1.0" "Lista Enlazada" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/src/lista.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'lista\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBpush_back\fP (\fBnode\fP *head, int new_value)"
+.br
+.RI "Retorna valor para indicar si la insercion de un elemento al final de la lista fue exitosa\&. "
+.ti -1c
+.RI "int \fBpush_front\fP (\fBnode\fP **head, int new_value)"
+.br
+.RI "Retorna entero que indica si a insercion de un elemento en la cabeza de la lista fue correcta\&. "
+.ti -1c
+.RI "void \fBprintElement\fP (int value)"
+.br
+.RI "Imprime cada elemento del nodo que contiene la lista\&. "
+.ti -1c
+.RI "\fBnode\fP * \fBreadList\fP (const char *filePath)"
+.br
+.RI "Lectura del archivo binario que se escribe con la lista\&. "
+.ti -1c
+.RI "void \fBwriteList\fP (\fBnode\fP *head, const char *filePath)"
+.br
+.RI "Escritura de lista enlazada dentro de archivo binario\&. "
+.ti -1c
+.RI "\fBnode\fP * \fBcreateList\fP (int first_value)"
+.br
+.RI "Crea un nodo en la lista\&. "
+.ti -1c
+.RI "void \fBinsertElement\fP (\fBnode\fP **phead, int pos, int new_value)"
+.br
+.RI "Inserta elementos en lista segun valor y posicion\&. "
+.ti -1c
+.RI "void \fBprintList\fP (\fBnode\fP *head)"
+.br
+.RI "Funcion imprime todos los elementos de la lista\&. "
+.ti -1c
+.RI "void \fBfreeList\fP (\fBnode\fP *head)"
+.br
+.RI "Libera la memoria reservada por la lista\&. "
+.ti -1c
+.RI "void \fBsort\fP (\fBnode\fP *head, char dir)"
+.br
+.RI "Ordenamiento de la lista en orden ascentente o descendente\&. "
+.ti -1c
+.RI "int \fBpop_front\fP (\fBnode\fP **phead)"
+.br
+.RI "Funcion elimina el primer elemento de la lista y sustiitute el elemento del dato del primero por el siguiente para que siga siendo una lista en lazada\&. "
+.ti -1c
+.RI "int \fBpop_back\fP (\fBnode\fP *head)"
+.br
+.RI "Funcion que elimina el ultimo elemento de la lista\&. "
+.ti -1c
+.RI "int \fBremoveElement\fP (\fBnode\fP **phead, int pos)"
+.br
+.RI "Elimina un elemento segun la posicion que se le indique\&. "
+.ti -1c
+.RI "int \fBgetElement\fP (\fBnode\fP *head, int index, int *valid)"
+.br
+.RI "Returna valor de la lista segun la posicion que se indique\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBnode\fP* createList (int first_value)"
+
+.PP
+Crea un nodo en la lista\&. Se crea el nodo cabeza, al cual se le inserta en data el primer valor y el siguiente seria el NULL, ya que por definicion el ultimo elmento de una lista enlazada es el NULL para establecer condicion de parada\&. Este funciona para insertar mas nodos y crear la lista\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfirst_value\fP Primer valor que contine el primer elemeto, es decir, la cabeza de la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Devuelve un puntero a estructura node que corresponde a la definicion del nodo cabeza 
+.RE
+.PP
+
+.SS "void freeList (\fBnode\fP * head)"
+
+.PP
+Libera la memoria reservada por la lista\&. Se crean dos punteros que apuntan a la estructura de tipo node y se llaman bor y reco, donde se recorre reco que es igual a head hasta que este no sea nulo y se recorre al siguiente y la primera instruccion correspode a liberar reco que la primera vez es la cabeza y luego el siguiente hasta liberar toda la memoria de la lista 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhead\fP recibe el puntero del primer elememto de la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+no tiene retorno 
+.RE
+.PP
+
+.SS "int getElement (\fBnode\fP * head, int index, int * valid)"
+
+.PP
+Returna valor de la lista segun la posicion que se indique\&. Se crea un bucle que finaliza al llegar a la posicion del indice que corresponde a la posicion de la lista que se desea ontener el valor y al ser ese valor, el puntero nAux es igual a este ultimo y se obtene el valor del dato llamado y, al hacer que nAux apunte al dato de este puntero 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhead\fP puntero al primer elemento de la lista 
+.br
+\fIindex\fP Posicion entera del elemento que se desea consultar en la lista\&. 
+.br
+\fIvalid\fP Recibe la direccion de una variable entera para modificarla a 1 si la posicion del elemento de la lista es exitosa, en caso contrario se retorna un 0 en caso que la posicion no exista o que la lista este vacia 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Retorna el valor de la lista segun la posicion 
+.RE
+.PP
+
+.SS "void insertElement (\fBnode\fP ** phead, int pos, int new_value)"
+
+.PP
+Inserta elementos en lista segun valor y posicion\&. Si la posocion es uno, y lo sera en caso que no haya un elemnto ya en la lista, entonces inserta la estructura a node devuelta por create list y su ya esta creada, seguira insertando los elemntos y el ultimo sera NULL 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpehead\fP recibe puntero al puntero de la cabeza de la lista 
+.br
+\fIpos\fP posicion donde se quiere insertar el elemento en la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+No tiene retorno 
+.RE
+.PP
+
+.SS "int pop_back (\fBnode\fP * head)"
+
+.PP
+Funcion que elimina el ultimo elemento de la lista\&. elimina el último elemento de la lista y asigna al penúltimo elemento como el nuevo elemento del final y se suprimen posibles erreroes como el hecho que la lista cuente con un solo elemento y por ende no sea valido eliminar el ultimo\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhead\fP recibe el puntero cabeza de la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Retorna el valor entero del ultiomo elemento elimindao en la lista y si la lista esta vacia, se retorna un 1 
+.RE
+.PP
+
+.SS "int pop_front (\fBnode\fP ** phead)"
+
+.PP
+Funcion elimina el primer elemento de la lista y sustiitute el elemento del dato del primero por el siguiente para que siga siendo una lista en lazada\&. Se crea una variable de tipo entero que seaa igual al elemeto que apunta el primer elemento en la lista y se retorna este valor llamado informacion para saber cual era ese valor eliminado\&. Para que la lista siga siendo valida, es siguiente elemento, se guarda en una variable de tipo puntero el dato apuntarpo por el next de phead y este sustituye al phead que fue liberado anteriormente\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIphead\fP recibe puntero doble del primer elemento de la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+funcion no tiene retorno 
+.RE
+.PP
+
+.SS "void printElement (int value)"
+
+.PP
+Imprime cada elemento del nodo que contiene la lista\&. Se crea la funcion de imprimir que recibe el valor que se desea imprimir de la lista\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP posicion del nodo que se quiere imprimir elemento 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+no tiene retorno 
+.RE
+.PP
+
+.SS "void printList (\fBnode\fP * head)"
+
+.PP
+Funcion imprime todos los elementos de la lista\&. Mediante el puntero cabeza que se recibe como parametro, se guarda en n su contenido y se recorre n hasta que no sea nulo y por cada elemento se imprime el elemento segun la posicion de la lista\&. para esto se llama a la funcion printElement y se indica la posicion el elemento que se esta imprimiendo mediante un cantador\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhead\fP Puntero del primer elemento de la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+No tiene retorno 
+.RE
+.PP
+
+.SS "int push_back (\fBnode\fP * head, int new_value)"
+
+.PP
+Retorna valor para indicar si la insercion de un elemento al final de la lista fue exitosa\&. Se recorre el puntero x que es igual a head y mientras este no sea nulo se recore todo, finalmente si luego de recorrer toa lista es NULL implica que no se pudo reservar la memoria y se retorna un 1\&. Si se pudo ingresar elemento al final es porque el final contiene data y el next wes NULL\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhead\fP puntero a la cabeza de la lista 
+.br
+\fInew_value\fP Valor que se anade al final de la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Retorna un 0 si se pudo insertar un elemento de manera exitosa en la lista y un 1 si no es de esta manera 
+.RE
+.PP
+
+.SS "int push_front (\fBnode\fP ** head, int new_value)"
+
+.PP
+Retorna entero que indica si a insercion de un elemento en la cabeza de la lista fue correcta\&. Esta funcion, crea un puntero nuevo que es al que se le reserva la lmemoria dinamica para asi hacer la revision y si este es NULL es porque no se pudo seservar memoria para este elemento y se hace el retorno de un 1\&. Caso contrario, el data apunta dentro de este del puntero cabeza, quire decir que se pudo reservar la memoria para que el puntero apunte a la estructura y se devuelve un 0\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhead\fP puntero al puntero del pirmer elemento de la lista 
+.br
+\fInew_value\fP Elemento que se inserta en la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Retorna un 0 si se pudo insertar un elemento de manera exitosa en la lista y un 1 si no es de esta manera 
+.RE
+.PP
+
+.SS "\fBnode\fP* readList (const char * filePath)"
+
+.PP
+Lectura del archivo binario que se escribe con la lista\&. lee el archivo binario del disco duro y hace una lectura de elemento uno a uno hasta llegar al final de la llinea y se indica mediante un string explicitamente que es el contenido del archivo el que se esta leyendo y se imprime\&. se crea la condicion que sea mientra no se llegue a eol para que se lean todos los elementos y que ademas se reserva la memoria para que se recorrael documento una vez y no se imprima ningun elemento mas de una vez\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilePath\fP nombre del archivo binario con la ruta 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+returna un puntero a estructura con el primer elemento leido por la funcion 
+.RE
+.PP
+
+.SS "int removeElement (\fBnode\fP ** phead, int pos)"
+
+.PP
+Elimina un elemento segun la posicion que se le indique\&. Se crea un contador para revisar la posicion del elemento que se quiere crear, ademas remueve elementos si y solo si la posicion indicada es menor o igual a la cantidad total de elementos en la lista\&. En caso de ser la primera posicon, se llama a la funcion pop_front\&. Si no es no es primero, se busca si es el ultimo o si esta en una posicion de en medio\&. si esta en medio, el siguiente sera el el elemnento que tenia el siguiente del eliminado y asi hasta llegar al ultimo elemento\&. Si es el ultimo, se remueve su valor y el siguiente del anterior sera NULL\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIphead\fP puntero al puntero de la cabeza de la lista 
+.br
+\fIpos\fP posicion del elemento que se quiere eliminar en la lista 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Retorn el valor del dato que se elimino en la lista y en caso de no poderse realizar la operacion, devuelve un -1 
+.RE
+.PP
+
+.SS "void sort (\fBnode\fP * head, char dir)"
+
+.PP
+Ordenamiento de la lista en orden ascentente o descendente\&. Se hace reserva dinamica con malloc al puntero x que es un arreglo para la cantidad de enteros que contiene la lista y mediante un bucle, se le asigna a este el valor que contiene cada elemeto la lista\&. con el arreglo x[cant] listo con todos los elementos almacendos, se pone inserta el metodo burbuja para ordenar los elementos de x de forma descendete si el caracter de paramentro a si es b, se forma ascendentes\&. Esto se crea con un condicional, finalmente cuando los elementos ya estan ordenados, se imprimen enpantalla, separados por espacios y finalmente se libera la memoria\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhead\fP puntero al primer elemento de la lista 
+.br
+\fIdir\fP variable tipo caracter que siendo a ordena la lista de forma descendente y si es b, la ordena de forma ascendente\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+no tiene retorno 
+.RE
+.PP
+
+.SS "void writeList (\fBnode\fP * head, const char * filePath)"
+
+.PP
+Escritura de lista enlazada dentro de archivo binario\&. Funcion recorre cada elemento dentro de la lista hasta llegar al ultimo elemento y por cada elemento lo escribe en la lista usando el metodo de escritura binaria con fwrite 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhead\fP Puntero de la cabeza de la lista 
+.br
+\fIfilePath\fP Nombre del archivo binario con ruta 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+no tiene retorno 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Lista Enlazada from the source code\&.

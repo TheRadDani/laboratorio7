@@ -1,0 +1,307 @@
+\hypertarget{lista_8c}{}\doxysection{src/src/lista.c File Reference}
+\label{lista_8c}\index{src/src/lista.c@{src/src/lista.c}}
+{\ttfamily \#include \char`\"{}lista.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{lista_8c_adf5cb607734212671fe18b645cd073ab}{push\+\_\+back}} (\mbox{\hyperlink{structnode}{node}} $\ast$head, int new\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Retorna valor para indicar si la insercion de un elemento al final de la lista fue exitosa. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lista_8c_a0f9c7e0b8129d93f5bbcb93faff9b12b}{push\+\_\+front}} (\mbox{\hyperlink{structnode}{node}} $\ast$$\ast$head, int new\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Retorna entero que indica si a insercion de un elemento en la cabeza de la lista fue correcta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lista_8c_a07abfbf24b9b9faf3d667b11b40c098c}{print\+Element}} (int value)
+\begin{DoxyCompactList}\small\item\em Imprime cada elemento del nodo que contiene la lista. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structnode}{node}} $\ast$ \mbox{\hyperlink{lista_8c_a26f8ce2449e2f72da0ee5ab08f05d18a}{read\+List}} (const char $\ast$file\+Path)
+\begin{DoxyCompactList}\small\item\em Lectura del archivo binario que se escribe con la lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lista_8c_a68cc8e670bdaf22947b98a3f5b9f2335}{write\+List}} (\mbox{\hyperlink{structnode}{node}} $\ast$head, const char $\ast$file\+Path)
+\begin{DoxyCompactList}\small\item\em Escritura de lista enlazada dentro de archivo binario. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structnode}{node}} $\ast$ \mbox{\hyperlink{lista_8c_a0d39e2cf3835fa7fa0c1393a90fe5a58}{create\+List}} (int first\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Crea un nodo en la lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lista_8c_a5b19bd8cd20f1362308a1bf565947bad}{insert\+Element}} (\mbox{\hyperlink{structnode}{node}} $\ast$$\ast$phead, int pos, int new\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Inserta elementos en lista segun valor y posicion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lista_8c_a8da4a2bbdf59b4e069d3819973f03b43}{print\+List}} (\mbox{\hyperlink{structnode}{node}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Funcion imprime todos los elementos de la lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lista_8c_a17f2ac46d0f2f636ebaa7df78bb8a8d3}{free\+List}} (\mbox{\hyperlink{structnode}{node}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Libera la memoria reservada por la lista. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lista_8c_a7c5e23ece0ce006bcc168898f11dd9a5}{sort}} (\mbox{\hyperlink{structnode}{node}} $\ast$head, char dir)
+\begin{DoxyCompactList}\small\item\em Ordenamiento de la lista en orden ascentente o descendente. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lista_8c_aef29e110d8f78acee714a69c5c8a8190}{pop\+\_\+front}} (\mbox{\hyperlink{structnode}{node}} $\ast$$\ast$phead)
+\begin{DoxyCompactList}\small\item\em Funcion elimina el primer elemento de la lista y sustiitute el elemento del dato del primero por el siguiente para que siga siendo una lista en lazada. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lista_8c_abf20e4e03c1c6e2da0f6868efa2201e9}{pop\+\_\+back}} (\mbox{\hyperlink{structnode}{node}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Funcion que elimina el ultimo elemento de la lista. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lista_8c_a49baab641bbedc4d8d28d18467543296}{remove\+Element}} (\mbox{\hyperlink{structnode}{node}} $\ast$$\ast$phead, int pos)
+\begin{DoxyCompactList}\small\item\em Elimina un elemento segun la posicion que se le indique. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lista_8c_aef36177db50c48346bbcee2e0596a7e7}{get\+Element}} (\mbox{\hyperlink{structnode}{node}} $\ast$head, int index, int $\ast$valid)
+\begin{DoxyCompactList}\small\item\em Returna valor de la lista segun la posicion que se indique. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lista_8c_a0d39e2cf3835fa7fa0c1393a90fe5a58}\label{lista_8c_a0d39e2cf3835fa7fa0c1393a90fe5a58}} 
+\index{lista.c@{lista.c}!createList@{createList}}
+\index{createList@{createList}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{createList()}{createList()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structnode}{node}}$\ast$ create\+List (\begin{DoxyParamCaption}\item[{int}]{first\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Crea un nodo en la lista. 
+
+Se crea el nodo cabeza, al cual se le inserta en data el primer valor y el siguiente seria el N\+U\+LL, ya que por definicion el ultimo elmento de una lista enlazada es el N\+U\+LL para establecer condicion de parada. Este funciona para insertar mas nodos y crear la lista. 
+\begin{DoxyParams}{Parameters}
+{\em first\+\_\+value} & Primer valor que contine el primer elemeto, es decir, la cabeza de la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve un puntero a estructura node que corresponde a la definicion del nodo cabeza 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a17f2ac46d0f2f636ebaa7df78bb8a8d3}\label{lista_8c_a17f2ac46d0f2f636ebaa7df78bb8a8d3}} 
+\index{lista.c@{lista.c}!freeList@{freeList}}
+\index{freeList@{freeList}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{freeList()}{freeList()}}
+{\footnotesize\ttfamily void free\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Libera la memoria reservada por la lista. 
+
+Se crean dos punteros que apuntan a la estructura de tipo node y se llaman bor y reco, donde se recorre reco que es igual a head hasta que este no sea nulo y se recorre al siguiente y la primera instruccion correspode a liberar reco que la primera vez es la cabeza y luego el siguiente hasta liberar toda la memoria de la lista 
+\begin{DoxyParams}{Parameters}
+{\em head} & recibe el puntero del primer elememto de la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+no tiene retorno 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_aef36177db50c48346bbcee2e0596a7e7}\label{lista_8c_aef36177db50c48346bbcee2e0596a7e7}} 
+\index{lista.c@{lista.c}!getElement@{getElement}}
+\index{getElement@{getElement}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{getElement()}{getElement()}}
+{\footnotesize\ttfamily int get\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$}]{head,  }\item[{int}]{index,  }\item[{int $\ast$}]{valid }\end{DoxyParamCaption})}
+
+
+
+Returna valor de la lista segun la posicion que se indique. 
+
+Se crea un bucle que finaliza al llegar a la posicion del indice que corresponde a la posicion de la lista que se desea ontener el valor y al ser ese valor, el puntero n\+Aux es igual a este ultimo y se obtene el valor del dato llamado y, al hacer que n\+Aux apunte al dato de este puntero 
+\begin{DoxyParams}{Parameters}
+{\em head} & puntero al primer elemento de la lista \\
+\hline
+{\em index} & Posicion entera del elemento que se desea consultar en la lista. \\
+\hline
+{\em valid} & Recibe la direccion de una variable entera para modificarla a 1 si la posicion del elemento de la lista es exitosa, en caso contrario se retorna un 0 en caso que la posicion no exista o que la lista este vacia \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna el valor de la lista segun la posicion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a5b19bd8cd20f1362308a1bf565947bad}\label{lista_8c_a5b19bd8cd20f1362308a1bf565947bad}} 
+\index{lista.c@{lista.c}!insertElement@{insertElement}}
+\index{insertElement@{insertElement}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{insertElement()}{insertElement()}}
+{\footnotesize\ttfamily void insert\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$$\ast$}]{phead,  }\item[{int}]{pos,  }\item[{int}]{new\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Inserta elementos en lista segun valor y posicion. 
+
+Si la posocion es uno, y lo sera en caso que no haya un elemnto ya en la lista, entonces inserta la estructura a node devuelta por create list y su ya esta creada, seguira insertando los elemntos y el ultimo sera N\+U\+LL 
+\begin{DoxyParams}{Parameters}
+{\em pehead} & recibe puntero al puntero de la cabeza de la lista \\
+\hline
+{\em pos} & posicion donde se quiere insertar el elemento en la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+No tiene retorno 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_abf20e4e03c1c6e2da0f6868efa2201e9}\label{lista_8c_abf20e4e03c1c6e2da0f6868efa2201e9}} 
+\index{lista.c@{lista.c}!pop\_back@{pop\_back}}
+\index{pop\_back@{pop\_back}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{pop\_back()}{pop\_back()}}
+{\footnotesize\ttfamily int pop\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Funcion que elimina el ultimo elemento de la lista. 
+
+elimina el último elemento de la lista y asigna al penúltimo elemento como el nuevo elemento del final y se suprimen posibles erreroes como el hecho que la lista cuente con un solo elemento y por ende no sea valido eliminar el ultimo. 
+\begin{DoxyParams}{Parameters}
+{\em head} & recibe el puntero cabeza de la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna el valor entero del ultiomo elemento elimindao en la lista y si la lista esta vacia, se retorna un 1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_aef29e110d8f78acee714a69c5c8a8190}\label{lista_8c_aef29e110d8f78acee714a69c5c8a8190}} 
+\index{lista.c@{lista.c}!pop\_front@{pop\_front}}
+\index{pop\_front@{pop\_front}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{pop\_front()}{pop\_front()}}
+{\footnotesize\ttfamily int pop\+\_\+front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$$\ast$}]{phead }\end{DoxyParamCaption})}
+
+
+
+Funcion elimina el primer elemento de la lista y sustiitute el elemento del dato del primero por el siguiente para que siga siendo una lista en lazada. 
+
+Se crea una variable de tipo entero que seaa igual al elemeto que apunta el primer elemento en la lista y se retorna este valor llamado informacion para saber cual era ese valor eliminado. Para que la lista siga siendo valida, es siguiente elemento, se guarda en una variable de tipo puntero el dato apuntarpo por el next de phead y este sustituye al phead que fue liberado anteriormente. 
+\begin{DoxyParams}{Parameters}
+{\em phead} & recibe puntero doble del primer elemento de la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+funcion no tiene retorno 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a07abfbf24b9b9faf3d667b11b40c098c}\label{lista_8c_a07abfbf24b9b9faf3d667b11b40c098c}} 
+\index{lista.c@{lista.c}!printElement@{printElement}}
+\index{printElement@{printElement}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{printElement()}{printElement()}}
+{\footnotesize\ttfamily void print\+Element (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Imprime cada elemento del nodo que contiene la lista. 
+
+Se crea la funcion de imprimir que recibe el valor que se desea imprimir de la lista. 
+\begin{DoxyParams}{Parameters}
+{\em value} & posicion del nodo que se quiere imprimir elemento \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+no tiene retorno 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a8da4a2bbdf59b4e069d3819973f03b43}\label{lista_8c_a8da4a2bbdf59b4e069d3819973f03b43}} 
+\index{lista.c@{lista.c}!printList@{printList}}
+\index{printList@{printList}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{printList()}{printList()}}
+{\footnotesize\ttfamily void print\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Funcion imprime todos los elementos de la lista. 
+
+Mediante el puntero cabeza que se recibe como parametro, se guarda en n su contenido y se recorre n hasta que no sea nulo y por cada elemento se imprime el elemento segun la posicion de la lista. para esto se llama a la funcion print\+Element y se indica la posicion el elemento que se esta imprimiendo mediante un cantador. 
+\begin{DoxyParams}{Parameters}
+{\em head} & Puntero del primer elemento de la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+No tiene retorno 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_adf5cb607734212671fe18b645cd073ab}\label{lista_8c_adf5cb607734212671fe18b645cd073ab}} 
+\index{lista.c@{lista.c}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}}
+{\footnotesize\ttfamily int push\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$}]{head,  }\item[{int}]{new\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Retorna valor para indicar si la insercion de un elemento al final de la lista fue exitosa. 
+
+Se recorre el puntero x que es igual a head y mientras este no sea nulo se recore todo, finalmente si luego de recorrer toa lista es N\+U\+LL implica que no se pudo reservar la memoria y se retorna un 1. Si se pudo ingresar elemento al final es porque el final contiene data y el next wes N\+U\+LL. 
+\begin{DoxyParams}{Parameters}
+{\em head} & puntero a la cabeza de la lista \\
+\hline
+{\em new\+\_\+value} & Valor que se anade al final de la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna un 0 si se pudo insertar un elemento de manera exitosa en la lista y un 1 si no es de esta manera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a0f9c7e0b8129d93f5bbcb93faff9b12b}\label{lista_8c_a0f9c7e0b8129d93f5bbcb93faff9b12b}} 
+\index{lista.c@{lista.c}!push\_front@{push\_front}}
+\index{push\_front@{push\_front}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{push\_front()}{push\_front()}}
+{\footnotesize\ttfamily int push\+\_\+front (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$$\ast$}]{head,  }\item[{int}]{new\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Retorna entero que indica si a insercion de un elemento en la cabeza de la lista fue correcta. 
+
+Esta funcion, crea un puntero nuevo que es al que se le reserva la lmemoria dinamica para asi hacer la revision y si este es N\+U\+LL es porque no se pudo seservar memoria para este elemento y se hace el retorno de un 1. Caso contrario, el data apunta dentro de este del puntero cabeza, quire decir que se pudo reservar la memoria para que el puntero apunte a la estructura y se devuelve un 0. 
+\begin{DoxyParams}{Parameters}
+{\em head} & puntero al puntero del pirmer elemento de la lista \\
+\hline
+{\em new\+\_\+value} & Elemento que se inserta en la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna un 0 si se pudo insertar un elemento de manera exitosa en la lista y un 1 si no es de esta manera 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a26f8ce2449e2f72da0ee5ab08f05d18a}\label{lista_8c_a26f8ce2449e2f72da0ee5ab08f05d18a}} 
+\index{lista.c@{lista.c}!readList@{readList}}
+\index{readList@{readList}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{readList()}{readList()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structnode}{node}}$\ast$ read\+List (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Lectura del archivo binario que se escribe con la lista. 
+
+lee el archivo binario del disco duro y hace una lectura de elemento uno a uno hasta llegar al final de la llinea y se indica mediante un string explicitamente que es el contenido del archivo el que se esta leyendo y se imprime. se crea la condicion que sea mientra no se llegue a eol para que se lean todos los elementos y que ademas se reserva la memoria para que se recorrael documento una vez y no se imprima ningun elemento mas de una vez. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & nombre del archivo binario con la ruta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returna un puntero a estructura con el primer elemento leido por la funcion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a49baab641bbedc4d8d28d18467543296}\label{lista_8c_a49baab641bbedc4d8d28d18467543296}} 
+\index{lista.c@{lista.c}!removeElement@{removeElement}}
+\index{removeElement@{removeElement}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{removeElement()}{removeElement()}}
+{\footnotesize\ttfamily int remove\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$$\ast$}]{phead,  }\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Elimina un elemento segun la posicion que se le indique. 
+
+Se crea un contador para revisar la posicion del elemento que se quiere crear, ademas remueve elementos si y solo si la posicion indicada es menor o igual a la cantidad total de elementos en la lista. En caso de ser la primera posicon, se llama a la funcion pop\+\_\+front. Si no es no es primero, se busca si es el ultimo o si esta en una posicion de en medio. si esta en medio, el siguiente sera el el elemnento que tenia el siguiente del eliminado y asi hasta llegar al ultimo elemento. Si es el ultimo, se remueve su valor y el siguiente del anterior sera N\+U\+LL. 
+\begin{DoxyParams}{Parameters}
+{\em phead} & puntero al puntero de la cabeza de la lista \\
+\hline
+{\em pos} & posicion del elemento que se quiere eliminar en la lista \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorn el valor del dato que se elimino en la lista y en caso de no poderse realizar la operacion, devuelve un -\/1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a7c5e23ece0ce006bcc168898f11dd9a5}\label{lista_8c_a7c5e23ece0ce006bcc168898f11dd9a5}} 
+\index{lista.c@{lista.c}!sort@{sort}}
+\index{sort@{sort}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}}
+{\footnotesize\ttfamily void sort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$}]{head,  }\item[{char}]{dir }\end{DoxyParamCaption})}
+
+
+
+Ordenamiento de la lista en orden ascentente o descendente. 
+
+Se hace reserva dinamica con malloc al puntero x que es un arreglo para la cantidad de enteros que contiene la lista y mediante un bucle, se le asigna a este el valor que contiene cada elemeto la lista. con el arreglo x\mbox{[}cant\mbox{]} listo con todos los elementos almacendos, se pone inserta el metodo burbuja para ordenar los elementos de x de forma descendete si el caracter de paramentro a si es b, se forma ascendentes. Esto se crea con un condicional, finalmente cuando los elementos ya estan ordenados, se imprimen enpantalla, separados por espacios y finalmente se libera la memoria. 
+\begin{DoxyParams}{Parameters}
+{\em head} & puntero al primer elemento de la lista \\
+\hline
+{\em dir} & variable tipo caracter que siendo a ordena la lista de forma descendente y si es b, la ordena de forma ascendente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+no tiene retorno 
+\end{DoxyReturn}
+\mbox{\Hypertarget{lista_8c_a68cc8e670bdaf22947b98a3f5b9f2335}\label{lista_8c_a68cc8e670bdaf22947b98a3f5b9f2335}} 
+\index{lista.c@{lista.c}!writeList@{writeList}}
+\index{writeList@{writeList}!lista.c@{lista.c}}
+\doxysubsubsection{\texorpdfstring{writeList()}{writeList()}}
+{\footnotesize\ttfamily void write\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structnode}{node}} $\ast$}]{head,  }\item[{const char $\ast$}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Escritura de lista enlazada dentro de archivo binario. 
+
+Funcion recorre cada elemento dentro de la lista hasta llegar al ultimo elemento y por cada elemento lo escribe en la lista usando el metodo de escritura binaria con fwrite 
+\begin{DoxyParams}{Parameters}
+{\em head} & Puntero de la cabeza de la lista \\
+\hline
+{\em file\+Path} & Nombre del archivo binario con ruta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+no tiene retorno 
+\end{DoxyReturn}

@@ -1,0 +1,3 @@
+El pdf corresponde al informe del laboratorio
+Doxyfile archivo para generar documentacion en doxygen
+src programa principal con el Makefile para compilar
